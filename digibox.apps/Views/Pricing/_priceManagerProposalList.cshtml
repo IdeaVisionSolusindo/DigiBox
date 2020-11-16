@@ -1,0 +1,39 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<digibox.services.Models.PriceProposalListModel>
+<table class="table nowrapcell">
+    <thead>
+        <tr>
+            <th class="text-center">
+                Action
+            </th>
+            <th>Date</th>
+            <th>Distributor</th>
+            <th>Collector Name</th>
+            <th>Approved/Rejected by</th>
+            <th>Reason for Rejection</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var itm in Model)
+        {
+        <tr>
+            <td class="text-center">
+                <a href="~/Pricing/OpenProposal/@itm.id" title="Open">
+                    <i class="fa fa-file fa-sm text-info"></i>
+                </a>
+            </td>
+            <td>@String.Format("{0: dd/MM/yyyy}", itm.ddate)</td>
+            <td>@itm.distributor</td>
+            <td>@itm.collector</td>
+            <td>@itm.approvedby</td>
+            <td>@itm.rejectedreason</td>
+            <td>
+                <label class="@digibox.apps.Modules.FNGlobal.LabelColor(itm.status)">
+                    @itm.status
+                </label>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

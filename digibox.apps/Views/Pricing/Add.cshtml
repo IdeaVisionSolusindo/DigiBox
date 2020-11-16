@@ -1,0 +1,87 @@
+﻿@model digibox.services.Models.PriceProposalModel
+@{
+    ViewBag.Title = "New Pricing";
+    var distributorlist = ViewData["distributorlist"] as List<SelectListItem>;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">@ViewBag.Title</h3>
+            </div>
+            <!-- /.card-header -->
+            @using (Html.BeginForm("Add", "Pricing", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+        <div class="card-body">
+            @Html.AntiForgeryToken()
+            <div class="form-group row">
+                @Html.LabelFor(x => x.distributorid, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(x => x.distributorid, distributorlist, new { @class = "form-control", @placeholder = Html.DisplayNameFor(x => x.distributorid) })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(x => x.startdate, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-2">
+                    <div class="input-group date dte" id="startdate" data-target-input="nearest">
+                        @Html.TextBoxFor(x => x.startdate, new { @class = "form-control datetimepicker-input", data_target = "#startdate" })
+                        <div class="input-group-append" data-target="#startdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+                @Html.LabelFor(x => x.enddate, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-2">
+                    <div class="input-group date dte" id="enddate" data-target-input="nearest">
+                        @Html.TextBoxFor(x => x.enddate, new { @class = "form-control datetimepicker-input", data_target = "#enddate" })
+                        <div class="input-group-append" data-target="#enddate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Attachment</label>
+                <div class="col-sm-4">
+                    <input type="file" class="form-control" name="file" />
+                </div>
+            </div>
+            <div class="form-group row input-group input-group-sm">
+                    <label class="col-sm-2 col-form-label">Material</label>
+                    <div class="col-sm-9">
+                        <select id="ddlMaterial" multiple class="s2 form-control">
+                        </select>
+                    </div>
+                    <a class="btn btn-sm btn-success col-sm-1" href="javascript:;" onclick="addToList()"> Add to List</a>
+                </div>
+                <div class="form-group row">
+                    <table class="table table-striped" id="tblPriceList">
+                        <thead>
+                            <tr>
+                                <th>Part No</th>
+                                <th>Material</th>
+                                <th>Current Price</th>
+                                <th>New Price</th>
+                                <th>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            }
+            <!-- /.card-body -->
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/Pricing/Add.js"></script>
+
+}

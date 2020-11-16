@@ -1,0 +1,48 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<digibox.services.Models.PriceProposalListModel>
+<table class="table nowrapcell">
+    <thead>
+        <tr>
+            <th class="text-center">
+                Action
+            </th>
+            <th>Date</th>
+            <th>Distributor</th>
+            <th>Approved by</th>
+            <th>Reason for Rejection</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var itm in Model)
+        {
+        <tr>
+            <td>@String.Format("{0: dd/MM/yyyy}", itm.ddate)</td>
+            <td>@itm.distributor</td>
+            <td>@itm.approvedby</td>
+            <th>@itm.rejectedreason</th>
+            <td>
+                <label class="@digibox.apps.Modules.FNGlobal.LabelColor(itm.status)">
+                    @itm.status
+                </label>
+            </td>
+            <td>
+                @if (itm.status == digibox.apps.Modules.PriceStatus.DRAFT)
+                {
+                    <a href="~/Pricing/Edit/@itm.id" title="Edit">
+                        <i class="fa fa-edit fa-sm text-success"></i>
+                    </a>
+                    <a href="javascript:;" onclick="remove('@itm.id')" title="Delete">
+                        <i class="fa fa-times fa-sm text-danger"></i>
+                    </a>
+                    <a href="javascript:;" onclick="Propose('@itm.id')" title="Propose to Admin">
+                        <i class="fa fa-check fa-sm text-warning"></i>
+                    </a>
+                }
+                <a href="~/Pricing/OpenProposal/@itm.id" title="Open">
+                    <i class="fa fa-file fa-sm text-info"></i>
+                </a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Assignment";
+    var collectors = ViewData["collectors"] as List<SelectListItem>;
+    var parameters = ViewData["parameters"] as List<SelectListItem>;
+    
+
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">@ViewBag.Title</h3>
+                <div class="card-tools" style="width:50%">
+                    <div class="input-group input-group-md">
+                        @Html.DropDownList("Parameters", parameters, new { @class = "form-control form-control-navbar", @id = "paramtype", @onchange = "paramtypeChanged(this.value)" })
+                        <div id="dvdropdown" class="collapse" style="width:50%">
+                            <select class="form-control form-control-navbar" id="cbosearchString">
+                            </select>
+                        </div>
+                        <div id="dvParamText" style="width:50%">
+                            <input class="form-control form-control-navbar" id="searchString" type="search" placeholder="Search" aria-label="Search">
+                        </div>
+                        <div class="input-group-append">
+                            <button class="btn btn-info" onclick="openData(1)">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <div class="row p-3">
+                    <label class="col-md-2 control-label">User</label>
+                    <div class="col-md-4">
+                        @Html.DropDownList("Parameters", collectors, new { @class = "form-control", @id = "collector", @onchange = "collectorsChanged()" })
+                    </div>
+                    <div class="col-md-2 control-label">
+                        <button class="btn btn-primary" onclick="assign()">
+                            <i class="fa fa-save fa-sm"></i> Assign
+                        </button>
+                    </div>
+                </div>
+                <div class="row p-3">
+                    <div class="custom-control custom-radio m-3 ">
+                        <input class="custom-control-input rdassigned" type="radio" id="rdAll" value="All" name="FilterList" checked="">
+                        <label for="rdAll" class="custom-control-label">All</label>
+                    </div>
+                    <div class="custom-control custom-radio m-3">
+                        <input class="custom-control-input rdassigned" type="radio" id="rdUnAssigned" value="UnAssigned" name="FilterList">
+                        <label for="rdUnAssigned" class="custom-control-label">Un-Assigned</label>
+                    </div>
+                    <div class="custom-control custom-radio m-3">
+                        <input class="custom-control-input rdassigned" type="radio" id="rdAssigned" value="Assigned" name="FilterList">
+                        <label for="rdAssigned" class="custom-control-label">Assigned</label>
+                    </div>
+                </div>
+                <div id="tblData" class="table-responsive p-3 border-info ">
+
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/User/Assignment.js"></script>
+}

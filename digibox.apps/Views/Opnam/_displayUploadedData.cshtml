@@ -1,0 +1,75 @@
+﻿@{ 
+    var header = Session["opnamemaster"] as digibox.services.Models.OpnamListModel;
+    var content = Session["opnamedetail"] as List<digibox.services.Models.OpnameDetail>;
+    var opnametype = ViewData["opnameType"] as string;
+}
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Date</label>
+                        <div class="col-sm-4">
+                            <label class="form-control">@String.Format("{0:dd MMM yyyy}", header.opnamdate)</label>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Operator</label>
+                        <div class="col-sm-4">
+                            <label class="form-control">@header.CheckeByName</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-2">Type</label>
+                        <div class="col-sm-10">
+                            <label class="form-control">@header.OpnameTypeValue</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    @if (opnametype == digibox.apps.Modules.OpnameType.STOCKOPNAME)
+                                    {
+                                        <th>RFID Code</th>
+                                    }
+                                    <th>
+                                        Part. No
+                                    </th>
+                                    <th>
+                                        Material
+                                    </th>
+                                    <th>
+                                        In/Out
+                                    </th>
+                                    <th>
+                                        Amount
+                                    </th>
+                                    <th>
+                                        Description
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var itm in content)
+                                {
+                                <tr>
+                                    @if (opnametype == digibox.apps.Modules.OpnameType.STOCKOPNAME)
+                                    {
+                                        <td>@itm.rfidcode</td>
+                                    }
+                                    <td>
+                                        @itm.partno
+                                    </td>
+                                    <td>
+                                        @itm.materialName
+                                    </td>
+                                    <td>
+                                        @itm.inOutName
+                                    </td>
+                                    <td>
+                                        @String.Format("{0:n0}", itm.amount)
+                                    </td>
+                                    <td>
+                                        @itm.description
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>

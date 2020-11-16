@@ -1,0 +1,65 @@
+﻿@model digibox.services.Models.OpnameDetail
+@{
+    ViewBag.Title = "PrintRFID";
+    Layout = "~/Views/Shared/_PrintLayout.cshtml";
+
+}
+
+<table class="table" style="border:1px solid black">
+    <tr>
+        <td colspan="2">
+            <h2>UNILEVER INDONESIA</h2>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="~/Content/dist/img/U11.png" style="width:200px" />
+        </td>
+        <td>
+            <table class="table">
+                <tr>
+                    <td>
+                        Material Code
+                    </td>
+                    <td>
+                        @Model.partno
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Material Name
+                    </td>
+                    <td>
+                        @Model.materialName
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Distributed By
+                    </td>
+                    <td>
+                        @Model.inOutName
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Description
+                    </td>
+                    <td>
+                        @Model.description
+                    </td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="@Model.qrimage"  />
+        </td>
+        <td>
+            <img src="@Model.barcodeimage" />
+        </td>
+    </tr>
+</table>
+

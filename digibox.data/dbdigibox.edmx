@@ -1,0 +1,1529 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbdigiboxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tddraw">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="drawid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="materialid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="receivedate" Type="datetime" />
+          <Property Name="receiveamount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="rfidcode" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tdopnam">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="materialid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="opnamid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="inout" Type="int" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="description" Type="varchar" MaxLength="300" />
+          <Property Name="rfidcode" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tdoutgoing">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="drequestid" Type="uniqueidentifier" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="inventoryid" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="tdprice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="priceid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="materialid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="currentprice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="newprice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="tdreplenish">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="replenishid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="materialid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="receivedate" Type="datetime" />
+          <Property Name="receiveamount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="rfidcode" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tdrequest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="requestid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="materialid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="receivedate" Type="datetime" />
+          <Property Name="receiveamount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="rfidcode" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tdrole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="roleid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="functionid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="tduser">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="userid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="token" Type="varchar" MaxLength="8000" />
+          <Property Name="timelogin" Type="datetime" />
+          <Property Name="timelogout" Type="datetime" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="tmattribute">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="attributename" Type="varchar" MaxLength="100" />
+          <Property Name="attributevalue" Type="varchar" MaxLength="100" />
+          <Property Name="sortnumber" Type="int" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="isshown" Type="bit" />
+        </EntityType>
+        <EntityType Name="tmdistributor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="address" Type="varchar" MaxLength="255" />
+          <Property Name="telp" Type="varchar" MaxLength="2455" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="tmmaterial">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="partno" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="minstock" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="unit" Type="varchar" MaxLength="50" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="currentstock" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="location" Type="uniqueidentifier" />
+          <Property Name="datecreate" Type="datetime" />
+          <Property Name="maxstock" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="movementtype" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="materialtype" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="distributor" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="binlocation" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="plant" Type="varchar" MaxLength="20" />
+          <Property Name="sloc" Type="varchar" MaxLength="20" />
+          <Property Name="calhorizon" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tmmaterialprice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="materialid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="datestart" Type="datetime" Nullable="false" />
+          <Property Name="dateend" Type="datetime" />
+          <Property Name="isactive" Type="bit" />
+          <Property Name="status" Type="varchar" MaxLength="100" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="approvedby" Type="uniqueidentifier" />
+          <Property Name="createdbyid" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="tmmaterialsbu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="materialid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="sbuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="currentstock" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="isdeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="tmmaterialuser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="materialid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="userid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="tmrole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="191" Nullable="false" />
+          <Property Name="slug" Type="varchar" MaxLength="191" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="createdat" Type="datetime" Nullable="false" />
+          <Property Name="updateat" Type="datetime" Nullable="false" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="Special" Type="int" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="datetime2" Precision="7" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tmuser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="191" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="8000" Nullable="false" />
+          <Property Name="position" Type="varchar" MaxLength="191" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="isldap" Type="bit" />
+          <Property Name="token" Type="varchar" MaxLength="8000" />
+          <Property Name="costcenterid" Type="bigint" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="status" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="roleid" Type="uniqueidentifier" />
+          <Property Name="isdeletable" Type="bit" />
+        </EntityType>
+        <EntityType Name="tsfunction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="controller" Type="varchar" MaxLength="100" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="action" Type="varchar" MaxLength="100" />
+          <Property Name="param" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ttattachment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="attachmenttype" Type="varchar" MaxLength="200" />
+          <Property Name="referenceid" Type="uniqueidentifier" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+          <Property Name="attachment" Type="varbinary(max)" />
+          <Property Name="filename" Type="varchar" MaxLength="100" />
+          <Property Name="attachmentstep" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ttdraw">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="no" Type="varchar" MaxLength="200" />
+          <Property Name="drawdate" Type="date" />
+          <Property Name="drawerid" Type="uniqueidentifier" />
+          <Property Name="receivedbyid" Type="uniqueidentifier" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="status" Type="varchar" MaxLength="100" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="receiveddate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ttinventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="materialid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="inout" Type="smallint" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="rfidcode" Type="varchar" MaxLength="100" />
+          <Property Name="dreplenishid" Type="uniqueidentifier" />
+          <Property Name="drequestid" Type="uniqueidentifier" />
+          <Property Name="replstock" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="ttmessages">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="fromid" Type="uniqueidentifier" />
+          <Property Name="toid" Type="uniqueidentifier" />
+          <Property Name="messages" Type="varchar" MaxLength="500" />
+          <Property Name="isdismissed" Type="bit" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="dateposted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ttopnam">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="opnamdate" Type="date" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="opnamtype" Type="uniqueidentifier" />
+          <Property Name="status" Type="varchar" MaxLength="100" />
+          <Property Name="checkedby" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="ttprice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ddate" Type="datetime" Nullable="false" />
+          <Property Name="collectorid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="no" Type="varchar" MaxLength="100" />
+          <Property Name="approvedby" Type="uniqueidentifier" />
+          <Property Name="status" Type="varchar" MaxLength="100" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="distributorid" Type="uniqueidentifier" />
+          <Property Name="startdate" Type="datetime" />
+          <Property Name="enddate" Type="datetime" />
+          <Property Name="rejectedreason" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ttreplenish">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="no" Type="varchar" MaxLength="200" />
+          <Property Name="indate" Type="date" />
+          <Property Name="collectorid" Type="uniqueidentifier" />
+          <Property Name="receivedbyid" Type="uniqueidentifier" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="status" Type="varchar" MaxLength="100" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="receiveddate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ttrequest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="no" Type="varchar" MaxLength="200" />
+          <Property Name="requestdate" Type="date" />
+          <Property Name="userid" Type="uniqueidentifier" />
+          <Property Name="handedoverby" Type="uniqueidentifier" />
+          <Property Name="createdat" Type="datetime" />
+          <Property Name="updatedat" Type="datetime" />
+          <Property Name="deletedat" Type="datetime" />
+          <Property Name="createdby" Type="varchar" MaxLength="255" />
+          <Property Name="updatedby" Type="varchar" MaxLength="255" />
+          <Property Name="deletedby" Type="varchar" MaxLength="255" />
+          <Property Name="status" Type="varchar" MaxLength="100" />
+          <Property Name="isdeleted" Type="bit" />
+          <Property Name="receiveddate" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="dbdigiboxModelStoreContainer">
+          <EntitySet Name="tddraw" EntityType="Self.tddraw" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tdopnam" EntityType="Self.tdopnam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tdoutgoing" EntityType="Self.tdoutgoing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tdprice" EntityType="Self.tdprice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tdreplenish" EntityType="Self.tdreplenish" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tdrequest" EntityType="Self.tdrequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tdrole" EntityType="Self.tdrole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tduser" EntityType="Self.tduser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tmattribute" EntityType="Self.tmattribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tmdistributor" EntityType="Self.tmdistributor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tmmaterial" EntityType="Self.tmmaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tmmaterialprice" EntityType="Self.tmmaterialprice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tmmaterialsbu" EntityType="Self.tmmaterialsbu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tmmaterialuser" EntityType="Self.tmmaterialuser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tmrole" EntityType="Self.tmrole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tmuser" EntityType="Self.tmuser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tsfunction" EntityType="Self.tsfunction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ttattachment" EntityType="Self.ttattachment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ttdraw" EntityType="Self.ttdraw" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ttinventory" EntityType="Self.ttinventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ttmessages" EntityType="Self.ttmessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ttopnam" EntityType="Self.ttopnam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ttprice" EntityType="Self.ttprice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ttreplenish" EntityType="Self.ttreplenish" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ttrequest" EntityType="Self.ttrequest" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbdigiboxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbdigiboxEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tmdistributors" EntityType="dbdigiboxModel.tmdistributor" />
+          <EntitySet Name="tmattributes" EntityType="dbdigiboxModel.tmattribute" />
+          <EntitySet Name="tmmaterialsbus" EntityType="dbdigiboxModel.tmmaterialsbu" />
+          <EntitySet Name="tmmaterials" EntityType="dbdigiboxModel.tmmaterial" />
+          <EntitySet Name="tmroles" EntityType="dbdigiboxModel.tmrole" />
+          <EntitySet Name="tmusers" EntityType="dbdigiboxModel.tmuser" />
+          <EntitySet Name="tmmaterialusers" EntityType="dbdigiboxModel.tmmaterialuser" />
+          <EntitySet Name="ttmessages" EntityType="dbdigiboxModel.ttmessage" />
+          <EntitySet Name="tmmaterialprices" EntityType="dbdigiboxModel.tmmaterialprice" />
+          <EntitySet Name="ttattachments" EntityType="dbdigiboxModel.ttattachment" />
+          <EntitySet Name="tdprices" EntityType="dbdigiboxModel.tdprice" />
+          <EntitySet Name="ttprices" EntityType="dbdigiboxModel.ttprice" />
+          <EntitySet Name="tdusers" EntityType="dbdigiboxModel.tduser" />
+          <EntitySet Name="tdroles" EntityType="dbdigiboxModel.tdrole" />
+          <EntitySet Name="tsfunctions" EntityType="dbdigiboxModel.tsfunction" />
+          <EntitySet Name="ttreplenishes" EntityType="dbdigiboxModel.ttreplenish" />
+          <EntitySet Name="tdreplenishes" EntityType="dbdigiboxModel.tdreplenish" />
+          <EntitySet Name="tdrequests" EntityType="dbdigiboxModel.tdrequest" />
+          <EntitySet Name="ttrequests" EntityType="dbdigiboxModel.ttrequest" />
+          <EntitySet Name="ttinventories" EntityType="dbdigiboxModel.ttinventory" />
+          <EntitySet Name="tdoutgoings" EntityType="dbdigiboxModel.tdoutgoing" />
+          <EntitySet Name="tddraws" EntityType="dbdigiboxModel.tddraw" />
+          <EntitySet Name="ttdraws" EntityType="dbdigiboxModel.ttdraw" />
+          <EntitySet Name="ttopnams" EntityType="dbdigiboxModel.ttopnam" />
+          <EntitySet Name="tdopnams" EntityType="dbdigiboxModel.tdopnam" />
+        </EntityContainer>
+        <EntityType Name="tmdistributor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="telp" Type="String" MaxLength="2455" FixedLength="false" Unicode="false" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tmattribute">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="attributename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="attributevalue" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="sortnumber" Type="Int32" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isshown" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tmmaterialsbu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="materialid" Type="Guid" Nullable="false" />
+          <Property Name="sbuid" Type="Guid" Nullable="false" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="currentstock" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="isdeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tmmaterial">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="partno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="minstock" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="unit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="currentstock" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="Guid" />
+          <Property Name="datecreate" Type="DateTime" Precision="3" />
+          <Property Name="maxstock" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="movementtype" Type="Guid" Nullable="false" />
+          <Property Name="materialtype" Type="Guid" Nullable="false" />
+          <Property Name="distributor" Type="Guid" Nullable="false" />
+          <Property Name="binlocation" Type="Guid" Nullable="false" />
+          <Property Name="plant" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="sloc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="calhorizon" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tmrole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="191" FixedLength="false" Unicode="false" />
+          <Property Name="slug" Type="String" Nullable="false" MaxLength="191" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="createdat" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updateat" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="Special" Type="Int32" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="DateTime" Precision="7" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="id" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tmuser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="191" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="position" Type="String" MaxLength="191" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isldap" Type="Boolean" />
+          <Property Name="token" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="costcenterid" Type="Int64" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="roleid" Type="Guid" />
+          <Property Name="isdeletable" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tmmaterialuser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="materialid" Type="Guid" Nullable="false" />
+          <Property Name="userid" Type="Guid" Nullable="false" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ttmessage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="fromid" Type="Guid" />
+          <Property Name="toid" Type="Guid" />
+          <Property Name="messages" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="isdismissed" Type="Boolean" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="dateposted" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tmmaterialprice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="materialid" Type="Guid" Nullable="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="datestart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dateend" Type="DateTime" Precision="3" />
+          <Property Name="isactive" Type="Boolean" />
+          <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="approvedby" Type="Guid" />
+          <Property Name="createdbyid" Type="Guid" />
+        </EntityType>
+        <EntityType Name="ttattachment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="attachmenttype" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="referenceid" Type="Guid" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="attachment" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="filename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="attachmentstep" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tdprice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="priceid" Type="Guid" Nullable="false" />
+          <Property Name="materialid" Type="Guid" Nullable="false" />
+          <Property Name="currentprice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="newprice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ttprice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="ddate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="collectorid" Type="Guid" Nullable="false" />
+          <Property Name="no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="approvedby" Type="Guid" />
+          <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="distributorid" Type="Guid" />
+          <Property Name="startdate" Type="DateTime" Precision="3" />
+          <Property Name="enddate" Type="DateTime" Precision="3" />
+          <Property Name="rejectedreason" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tduser">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="userid" Type="Guid" Nullable="false" />
+          <Property Name="token" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="timelogin" Type="DateTime" Precision="3" />
+          <Property Name="timelogout" Type="DateTime" Precision="3" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tdrole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="roleid" Type="Guid" Nullable="false" />
+          <Property Name="functionid" Type="Guid" Nullable="false" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tsfunction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="controller" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="action" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="param" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ttreplenish">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="no" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="indate" Type="DateTime" Precision="0" />
+          <Property Name="collectorid" Type="Guid" />
+          <Property Name="receivedbyid" Type="Guid" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="receiveddate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tdreplenish">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="replenishid" Type="Guid" Nullable="false" />
+          <Property Name="materialid" Type="Guid" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="receivedate" Type="DateTime" Precision="3" />
+          <Property Name="receiveamount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="rfidcode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tdrequest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="requestid" Type="Guid" Nullable="false" />
+          <Property Name="materialid" Type="Guid" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="receivedate" Type="DateTime" Precision="3" />
+          <Property Name="receiveamount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="rfidcode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ttrequest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="no" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="requestdate" Type="DateTime" Precision="0" />
+          <Property Name="userid" Type="Guid" />
+          <Property Name="handedoverby" Type="Guid" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="receiveddate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ttinventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="materialid" Type="Guid" Nullable="false" />
+          <Property Name="inout" Type="Int16" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="rfidcode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dreplenishid" Type="Guid" />
+          <Property Name="drequestid" Type="Guid" />
+          <Property Name="replstock" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="tdoutgoing">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="drequestid" Type="Guid" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="inventoryid" Type="Guid" />
+        </EntityType>
+        <EntityType Name="tddraw">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="drawid" Type="Guid" Nullable="false" />
+          <Property Name="materialid" Type="Guid" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="receivedate" Type="DateTime" Precision="3" />
+          <Property Name="receiveamount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="rfidcode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ttdraw">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="no" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="drawdate" Type="DateTime" Precision="0" />
+          <Property Name="drawerid" Type="Guid" />
+          <Property Name="receivedbyid" Type="Guid" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="receiveddate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ttopnam">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="opnamdate" Type="DateTime" Precision="0" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="opnamtype" Type="Guid" />
+          <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="checkedby" Type="Guid" />
+        </EntityType>
+        <EntityType Name="tdopnam">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="materialid" Type="Guid" Nullable="false" />
+          <Property Name="opnamid" Type="Guid" Nullable="false" />
+          <Property Name="inout" Type="Int32" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="createdat" Type="DateTime" Precision="3" />
+          <Property Name="updatedat" Type="DateTime" Precision="3" />
+          <Property Name="deletedat" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="updatedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="deletedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isdeleted" Type="Boolean" />
+          <Property Name="description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="rfidcode" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbdigiboxModelStoreContainer" CdmEntityContainer="dbdigiboxEntities">
+          <EntitySetMapping Name="tmdistributors">
+            <EntityTypeMapping TypeName="dbdigiboxModel.tmdistributor">
+              <MappingFragment StoreEntitySet="tmdistributor">
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="telp" ColumnName="telp" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmattributes">
+            <EntityTypeMapping TypeName="dbdigiboxModel.tmattribute">
+              <MappingFragment StoreEntitySet="tmattribute">
+                <ScalarProperty Name="isshown" ColumnName="isshown" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="sortnumber" ColumnName="sortnumber" />
+                <ScalarProperty Name="attributevalue" ColumnName="attributevalue" />
+                <ScalarProperty Name="attributename" ColumnName="attributename" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmmaterialsbus">
+            <EntityTypeMapping TypeName="dbdigiboxModel.tmmaterialsbu">
+              <MappingFragment StoreEntitySet="tmmaterialsbu">
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="currentstock" ColumnName="currentstock" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="sbuid" ColumnName="sbuid" />
+                <ScalarProperty Name="materialid" ColumnName="materialid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmmaterials">
+            <EntityTypeMapping TypeName="dbdigiboxModel.tmmaterial">
+              <MappingFragment StoreEntitySet="tmmaterial">
+                <ScalarProperty Name="calhorizon" ColumnName="calhorizon" />
+                <ScalarProperty Name="sloc" ColumnName="sloc" />
+                <ScalarProperty Name="plant" ColumnName="plant" />
+                <ScalarProperty Name="binlocation" ColumnName="binlocation" />
+                <ScalarProperty Name="distributor" ColumnName="distributor" />
+                <ScalarProperty Name="materialtype" ColumnName="materialtype" />
+                <ScalarProperty Name="movementtype" ColumnName="movementtype" />
+                <ScalarProperty Name="maxstock" ColumnName="maxstock" />
+                <ScalarProperty Name="datecreate" ColumnName="datecreate" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="currentstock" ColumnName="currentstock" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="minstock" ColumnName="minstock" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="partno" ColumnName="partno" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmroles">
+            <EntityTypeMapping TypeName="dbdigiboxModel.tmrole">
+              <MappingFragment StoreEntitySet="tmrole">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="Special" ColumnName="Special" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updateat" ColumnName="updateat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="slug" ColumnName="slug" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmusers">
+            <EntityTypeMapping TypeName="dbdigiboxModel.tmuser">
+              <MappingFragment StoreEntitySet="tmuser">
+                <ScalarProperty Name="isdeletable" ColumnName="isdeletable" />
+                <ScalarProperty Name="roleid" ColumnName="roleid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="costcenterid" ColumnName="costcenterid" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="isldap" ColumnName="isldap" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmmaterialusers">
+            <EntityTypeMapping TypeName="dbdigiboxModel.tmmaterialuser">
+              <MappingFragment StoreEntitySet="tmmaterialuser">
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="materialid" ColumnName="materialid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ttmessages">
+            <EntityTypeMapping TypeName="dbdigiboxModel.ttmessage">
+              <MappingFragment StoreEntitySet="ttmessages">
+                <ScalarProperty Name="dateposted" ColumnName="dateposted" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="isdismissed" ColumnName="isdismissed" />
+                <ScalarProperty Name="messages" ColumnName="messages" />
+                <ScalarProperty Name="toid" ColumnName="toid" />
+                <ScalarProperty Name="fromid" ColumnName="fromid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmmaterialprices">
+            <EntityTypeMapping TypeName="dbdigiboxModel.tmmaterialprice">
+              <MappingFragment StoreEntitySet="tmmaterialprice">
+                <ScalarProperty Name="createdbyid" ColumnName="createdbyid" />
+                <ScalarProperty Name="approvedby" ColumnName="approvedby" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="dateend" ColumnName="dateend" />
+                <ScalarProperty Name="datestart" ColumnName="datestart" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="materialid" ColumnName="materialid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ttattachments">
+            <EntityTypeMapping TypeName="dbdigiboxModel.ttattachment">
+              <MappingFragment StoreEntitySet="ttattachment">
+                <ScalarProperty Name="attachmentstep" ColumnName="attachmentstep" />
+                <ScalarProperty Name="filename" ColumnName="filename" />
+                <ScalarProperty Name="attachment" ColumnName="attachment" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="referenceid" ColumnName="referenceid" />
+                <ScalarProperty Name="attachmenttype" ColumnName="attachmenttype" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tdprices">
+            <EntityTypeMapping TypeName="dbdigiboxModel.tdprice">
+              <MappingFragment StoreEntitySet="tdprice">
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="newprice" ColumnName="newprice" />
+                <ScalarProperty Name="currentprice" ColumnName="currentprice" />
+                <ScalarProperty Name="materialid" ColumnName="materialid" />
+                <ScalarProperty Name="priceid" ColumnName="priceid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ttprices">
+            <EntityTypeMapping TypeName="dbdigiboxModel.ttprice">
+              <MappingFragment StoreEntitySet="ttprice">
+                <ScalarProperty Name="rejectedreason" ColumnName="rejectedreason" />
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="distributorid" ColumnName="distributorid" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="approvedby" ColumnName="approvedby" />
+                <ScalarProperty Name="no" ColumnName="no" />
+                <ScalarProperty Name="collectorid" ColumnName="collectorid" />
+                <ScalarProperty Name="ddate" ColumnName="ddate" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tdusers">
+            <EntityTypeMapping TypeName="dbdigiboxModel.tduser">
+              <MappingFragment StoreEntitySet="tduser">
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="timelogout" ColumnName="timelogout" />
+                <ScalarProperty Name="timelogin" ColumnName="timelogin" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tdroles">
+            <EntityTypeMapping TypeName="dbdigiboxModel.tdrole">
+              <MappingFragment StoreEntitySet="tdrole">
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="functionid" ColumnName="functionid" />
+                <ScalarProperty Name="roleid" ColumnName="roleid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tsfunctions">
+            <EntityTypeMapping TypeName="dbdigiboxModel.tsfunction">
+              <MappingFragment StoreEntitySet="tsfunction">
+                <ScalarProperty Name="param" ColumnName="param" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="controller" ColumnName="controller" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ttreplenishes">
+            <EntityTypeMapping TypeName="dbdigiboxModel.ttreplenish">
+              <MappingFragment StoreEntitySet="ttreplenish">
+                <ScalarProperty Name="receiveddate" ColumnName="receiveddate" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="receivedbyid" ColumnName="receivedbyid" />
+                <ScalarProperty Name="collectorid" ColumnName="collectorid" />
+                <ScalarProperty Name="indate" ColumnName="indate" />
+                <ScalarProperty Name="no" ColumnName="no" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tdreplenishes">
+            <EntityTypeMapping TypeName="dbdigiboxModel.tdreplenish">
+              <MappingFragment StoreEntitySet="tdreplenish">
+                <ScalarProperty Name="rfidcode" ColumnName="rfidcode" />
+                <ScalarProperty Name="receiveamount" ColumnName="receiveamount" />
+                <ScalarProperty Name="receivedate" ColumnName="receivedate" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="materialid" ColumnName="materialid" />
+                <ScalarProperty Name="replenishid" ColumnName="replenishid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tdrequests">
+            <EntityTypeMapping TypeName="dbdigiboxModel.tdrequest">
+              <MappingFragment StoreEntitySet="tdrequest">
+                <ScalarProperty Name="rfidcode" ColumnName="rfidcode" />
+                <ScalarProperty Name="receiveamount" ColumnName="receiveamount" />
+                <ScalarProperty Name="receivedate" ColumnName="receivedate" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="materialid" ColumnName="materialid" />
+                <ScalarProperty Name="requestid" ColumnName="requestid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ttrequests">
+            <EntityTypeMapping TypeName="dbdigiboxModel.ttrequest">
+              <MappingFragment StoreEntitySet="ttrequest">
+                <ScalarProperty Name="receiveddate" ColumnName="receiveddate" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="handedoverby" ColumnName="handedoverby" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="requestdate" ColumnName="requestdate" />
+                <ScalarProperty Name="no" ColumnName="no" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ttinventories">
+            <EntityTypeMapping TypeName="dbdigiboxModel.ttinventory">
+              <MappingFragment StoreEntitySet="ttinventory">
+                <ScalarProperty Name="replstock" ColumnName="replstock" />
+                <ScalarProperty Name="drequestid" ColumnName="drequestid" />
+                <ScalarProperty Name="dreplenishid" ColumnName="dreplenishid" />
+                <ScalarProperty Name="rfidcode" ColumnName="rfidcode" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="inout" ColumnName="inout" />
+                <ScalarProperty Name="materialid" ColumnName="materialid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tdoutgoings">
+            <EntityTypeMapping TypeName="dbdigiboxModel.tdoutgoing">
+              <MappingFragment StoreEntitySet="tdoutgoing">
+                <ScalarProperty Name="inventoryid" ColumnName="inventoryid" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="drequestid" ColumnName="drequestid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tddraws">
+            <EntityTypeMapping TypeName="dbdigiboxModel.tddraw">
+              <MappingFragment StoreEntitySet="tddraw">
+                <ScalarProperty Name="rfidcode" ColumnName="rfidcode" />
+                <ScalarProperty Name="receiveamount" ColumnName="receiveamount" />
+                <ScalarProperty Name="receivedate" ColumnName="receivedate" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="materialid" ColumnName="materialid" />
+                <ScalarProperty Name="drawid" ColumnName="drawid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ttdraws">
+            <EntityTypeMapping TypeName="dbdigiboxModel.ttdraw">
+              <MappingFragment StoreEntitySet="ttdraw">
+                <ScalarProperty Name="receiveddate" ColumnName="receiveddate" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="receivedbyid" ColumnName="receivedbyid" />
+                <ScalarProperty Name="drawerid" ColumnName="drawerid" />
+                <ScalarProperty Name="drawdate" ColumnName="drawdate" />
+                <ScalarProperty Name="no" ColumnName="no" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ttopnams">
+            <EntityTypeMapping TypeName="dbdigiboxModel.ttopnam">
+              <MappingFragment StoreEntitySet="ttopnam">
+                <ScalarProperty Name="checkedby" ColumnName="checkedby" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="opnamtype" ColumnName="opnamtype" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="opnamdate" ColumnName="opnamdate" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tdopnams">
+            <EntityTypeMapping TypeName="dbdigiboxModel.tdopnam">
+              <MappingFragment StoreEntitySet="tdopnam">
+                <ScalarProperty Name="rfidcode" ColumnName="rfidcode" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="deletedat" ColumnName="deletedat" />
+                <ScalarProperty Name="updatedat" ColumnName="updatedat" />
+                <ScalarProperty Name="createdat" ColumnName="createdat" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="inout" ColumnName="inout" />
+                <ScalarProperty Name="opnamid" ColumnName="opnamid" />
+                <ScalarProperty Name="materialid" ColumnName="materialid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

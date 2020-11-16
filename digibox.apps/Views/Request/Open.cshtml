@@ -1,0 +1,76 @@
+﻿@model digibox.services.Models.RequestModel
+@{
+    ViewBag.Title = Model.no;
+
+    var materiallist = ViewData["modeldetail"] as List<digibox.services.Models.RequestDetailListModel>;
+
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">@ViewBag.Title</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="form-horizontal">
+                <div class="card-body">
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.requestdate, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            <label>@String.Format("{0: dd MMM yyyy}",Model.requestdate)</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <table class="table" id="tblDetail">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Part. No
+                                    </th>
+                                    <th>
+                                        Material
+                                    </th>
+                                    <th>
+                                        Request Amount
+                                    </th>
+                                    <th>
+                                        Unit
+                                    </th>
+                                    <th>
+                                        Received Date
+                                    </th>
+                                    <th>
+                                        Received
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var itm in materiallist)
+                                {
+                                <tr id="tr_@itm.id">
+                                    <td>@itm.partno</td>
+                                    <td>@itm.name</td>
+                                    <td>
+                                        @itm.amount
+                                    </td>
+                                    <td>@itm.unit</td>
+                                    <td>@String.Format("{0: dd MMM yyyy}", itm.receivedate)</td>
+                                    <td>@String.Format("{0:N0}", itm.receiveamount)</td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/Request/Edit.js"></script>
+
+}

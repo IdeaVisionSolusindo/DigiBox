@@ -1,0 +1,80 @@
+﻿@model digibox.services.Models.UserLoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DigiBox</title>
+    <!-- add icon link -->
+    <link rel="icon" href="~/Content/dist/img/U11.png" type="image/x-icon">
+    <link rel="stylesheet" href="~/Content/dist/js/adminlte.js" />
+    <link rel="stylesheet" href="~/Content/plugins/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="~/Content/style.css">
+</head>
+
+<body>
+    <div class="card">
+        @using (Html.BeginForm("Login", "User", FormMethod.Post, new { @class = "loginform" }))
+        {
+            @Html.AntiForgeryToken()
+            <form class="loginform" align="center">
+                <h4 align="center">Welcome To DigiBox</h4>
+                <p>Please login with your personal information by email address and password</p>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h6>Email</h6>
+                        @Html.ValidationMessageFor(x => x.email, "", new { @class = "text-sm text-danger" })
+                        <div class="input-group mb-3">
+                            @Html.TextBoxFor(x => x.email, new { @class = "form-control", @placeholder = Html.DisplayTextFor(x => x.email) })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                        </div>
+                        @*<input type="email" class="form-control" placeholder="example@email.com">*@
+                    </li>
+                    <li class="list-group-item">
+                        <h6>Password</h6>
+                        @Html.ValidationMessageFor(x => x.password, "", new { @class = "text-sm text-danger" })
+                        <div class="input-group mb-3">
+                            @Html.PasswordFor(x => x.password, new { @class = "form-control", @placeholder = Html.DisplayTextFor(x => x.password) })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        @*<input type="password" class="form-control" placeholder="Enter your password">*@
+                    </li>
+                </ul>
+                <br>
+                <div class="checkbox">
+                    <h6 class="remb"><input class="checkbox" type="checkbox"> Remember me</h6>
+                </div>
+                <a href="#" class="forgot">forgot password?</a>
+                <br><br>
+                <div class="button">
+                    <!-- /.col -->
+                    <button type="submit" class="btn btn-primary btn-block" style="margin-bottom:20%;">Login Now</button>
+                    <!-- /.col -->
+                </div>
+            </form>
+        }
+        <img class="sideimg" src="~/Content/dist/img/U11.png" />
+    </div>
+
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/dist/js/adminlte.min.js"></script>
+
+</body>
+
+</html>

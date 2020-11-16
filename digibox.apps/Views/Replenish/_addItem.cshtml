@@ -1,0 +1,42 @@
+﻿@model digibox.services.Models.DetailReplenishModel
+@{ 
+    var materials = ViewData["materials"] as List<SelectListItem>;
+
+}
+<div class="modal fade" id="dgModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("AddItem", "Replenish", FormMethod.Post, new { @id = "frmAdd" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.materialid, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
+                            @Html.DropDownListFor(x => x.materialid, @materials, new{ @class= "form-control s2" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.amount, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.amount, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                </div>
+            }
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+

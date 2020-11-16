@@ -1,0 +1,70 @@
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<digibox.services.Models.OpnamListModel>
+@{
+    int maxpage = Convert.ToInt32(ViewData["maxpage"]);
+    int currentpage = Convert.ToInt32(ViewData["currentpage"]);
+    int startpageno = currentpage > 4 ? currentpage - 4 : 1;
+    int endpageno = maxpage > 4 ? startpageno + 4 : maxpage;
+}
+
+<table class="table nowrapcell">
+    <thead>
+        <tr>
+            <th class="text-center">Action</th>
+            <th>Date</th>
+            <th>Checked By</th>
+            <th>Opnam Type</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var itm in Model)
+        {
+        <tr>
+            <td style="white-space: nowrap;" class="text-center">
+                @if (itm.status == digibox.apps.Modules.Status.DRAFT)
+                {
+                    <a href="~/Opnam/Edit/@itm.id" title="Edit @itm.CheckeByName">
+                        <i class="fa fa-edit fa-sm text-success"></i>
+                    </a>
+                    <a href="javascript:;" onclick="post('@itm.id')" title="Delete @itm.CheckeByName">
+                        <i class="fa fa-check fa-sm text-success"></i>
+                    </a>
+                    <a href="javascript:;" onclick="remove('@itm.id')" title="Delete @itm.CheckeByName">
+                        <i class="fa fa-times fa-sm text-danger"></i>
+                    </a>
+                }
+                <a href="~/Opnam/Open/@itm.id" title="Edit @itm.CheckeByName">
+                    <i class="fa fa-file fa-sm text-success"></i>
+                </a>
+            </td>
+            <td>@String.Format("{0:dd MMM yyyy}", itm.opnamdate)</td>
+            <td>@itm.CheckeByName</td>
+            <td>@itm.OpnameTypeValue</td>
+            <td>@itm.status</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@if (startpageno < endpageno)
+{
+    <div class="btn-group">
+        <input type="hidden" value="@startpageno" />
+        <button type="button" class="btn btn-white" onclick="openData(@currentpage-1)"><i class="fa fa-chevron-left"></i></button>
+        @for (int idx = startpageno; idx <= endpageno; idx++)
+        {
+            string active = idx == currentpage ? "active" : "";
+            if (idx == startpageno)
+            {
+                <button class="btn btn-white @active" onclick="openData(@idx)">@idx</button>
+            }
+            else
+            {
+                <button class="btn btn-white @active" onclick="openData(@idx)">@idx</button>
+            }
+        }
+        <button type="button" class="btn btn-white" onclick="openData(@currentpage+1)"><i class="fa fa-chevron-right"></i> </button>
+    </div>
+}

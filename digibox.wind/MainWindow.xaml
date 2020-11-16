@@ -1,0 +1,94 @@
+﻿<Controls:MetroWindow x:Class="digibox.wind.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:local="clr-namespace:digibox.wind"
+        xmlns:modul="clr-namespace:digibox.wind.Modules"
+        xmlns:vm="clr-namespace:digibox.wind.ViewModel"
+        mc:Ignorable="d"
+        xmlns:view ="clr-namespace:digibox.wind.View"
+        Title="Digibox" Height="450" Width="800" WindowState="Maximized" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow" >
+    <Controls:MetroWindow.Resources>
+        <modul:ShowCollapseConverter x:Key="conshowhide"/>
+        <modul:NegationCollapseConverter x:Key="negationshowhide" />
+    </Controls:MetroWindow.Resources>
+    <Grid HorizontalAlignment="Stretch">
+        <DockPanel LastChildFill="True" Visibility="{Binding IsLogin, Converter={StaticResource conshowhide}}">
+            <StackPanel Width="300" Background="#042f66" Orientation="Vertical" >
+                <Border  BorderThickness="0" Background="#eef4f0" Margin="5 5 5 20" Height="220" >
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Image Source="/Images/U11.png" Margin="20"/>
+                        <TextBlock Text="{Binding UserName}" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" />
+                    </StackPanel>
+                </Border>
+                <StackPanel/>
+                <StackPanel Orientation="Vertical" Margin="10">
+                    <StackPanel.Resources>
+                        <ObjectDataProvider x:Key="PackIconFontAwesomeKinds"
+                            MethodName="GetValues"
+                            ObjectType="{x:Type iconPacks:PackIconFontAwesomeKind}">
+                            <ObjectDataProvider.MethodParameters>
+                                <x:Type TypeName="iconPacks:PackIconFontAwesomeKind" />
+                            </ObjectDataProvider.MethodParameters>
+                        </ObjectDataProvider>
+                    </StackPanel.Resources>
+
+                    <Button HorizontalContentAlignment="Left" Height="40" Background="Transparent" BorderThickness="0" Command="{Binding ReplenishCommand}" >
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <iconPacks:PackIconMaterial Foreground="White" Kind="BasketFill" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,5,0" />
+                                <TextBlock Foreground="White" >Replenish</TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button HorizontalContentAlignment="Left" Height="40" Background="Transparent" BorderThickness="0" Command="{Binding CreateCommand}" >
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <iconPacks:PackIconMaterial Foreground="White" Kind="Creation" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,5,0" />
+                                <TextBlock Foreground="White" >Create Replenish</TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button HorizontalContentAlignment="Left" Height="40" Background="Transparent" BorderThickness="0" Command="{Binding DrawCommand}" >
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <iconPacks:PackIconMaterial Foreground="White" Kind="Creation" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,5,0" />
+                                <TextBlock Foreground="White" >Draw</TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button HorizontalContentAlignment="Left" Height="40" Background="Transparent" BorderThickness="0" Command="{Binding DrawMaterialCommand}" >
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <iconPacks:PackIconMaterial Foreground="White" Kind="Creation" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,5,0" />
+                                <TextBlock Foreground="White" >Create Draw Material</TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button HorizontalContentAlignment="Left" Height="40" Background="Transparent" BorderThickness="0" Command="{Binding LogoutCommand}" >
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <iconPacks:PackIconMaterial Foreground="White" Kind="Logout" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,5,0" />
+                                <TextBlock Foreground="White" >Logout</TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+            <Border BorderBrush="LightGray" BorderThickness="1" Margin="2" >
+                <DockPanel Background="White">
+                    <ContentControl HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Content="{Binding CurrentView}">
+                    </ContentControl>
+                </DockPanel>
+            </Border>
+        </DockPanel>
+        <DockPanel Visibility="{Binding IsLogin, Converter={StaticResource negationshowhide}}" Margin="100"  >
+            <view:LoginView  DataContext="{Binding UserLoginModel}">
+            </view:LoginView>
+        </DockPanel>
+    </Grid>
+</Controls:MetroWindow>

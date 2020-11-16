@@ -1,0 +1,109 @@
+﻿@model PagedList.IPagedList<digibox.services.Models.MaterialListModel>
+
+@using PagedList.Mvc;
+@{
+    int maxpage = Convert.ToInt32(ViewData["maxpage"]);
+    int currentpage = Convert.ToInt32(ViewData["currentpage"]);
+    int startpageno = currentpage > 4 ? currentpage - 4 : 1;
+    int endpageno = maxpage > 4 ? startpageno + 4 : maxpage;
+}
+
+
+<div class="table-responsive p-3 border-info ">
+    <table class="table nowrapcell">
+        <thead>
+            <tr>
+                <th>Part No.</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>UoM</th>
+                <th>Location</th>
+                <th>Bin Location</th>
+                <th>Mat. Create Date</th>
+                <th>Min. Stock</th>
+                <th>Max. Stock</th>
+                <th>Call Horizon</th>
+                <th>Movement Type</th>
+                <th>sbu</th>
+                <th>Material Type</th>
+                <th>Plant</th>
+                <th>Sloc</th>
+                <th>Distributor</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var itm in Model)
+            {
+                <tr>
+                    <td>
+                        @itm.partno
+                    </td>
+                    <td>
+                        @itm.name
+                    </td>
+                    <td>
+                        @itm.description
+                    </td>
+                    <td>
+                        @itm.unit
+                    </td>
+                    <td>
+                        @itm.location
+                    </td>
+                    <td>
+                        @itm.binlocation
+                    </td>
+                    <td>
+                        @String.Format("{0:dd MMM yyyy}", itm.datecreate)
+                    </td>
+                    <td>@itm.minstock</td>
+                    <td>@itm.maxstock</td>
+                    <td>@itm.calhorizon</td>
+                    <td>@itm.movementtype</td>
+                    <td>@itm.sbu</td>
+                    <td>@itm.materialtype</td>
+                    <td>@itm.plant</td>
+                    <td>@itm.sloc</td>
+                    <td style="white-space: nowrap;">@itm.distributor</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<p />
+@if (startpageno < endpageno)
+{
+
+    <input type="hidden" value="@startpageno" />
+    <ul class="pagination pagination-sm float-left m-2">
+        <li class="page-item">
+            <a class="page-link" href="javascript:;" onclick="openData(1)">
+                «
+            </a>
+        </li>
+        @for (int idx = startpageno; idx <= endpageno; idx++)
+        {
+            string active = idx == currentpage ? "active" : "";
+            if (idx == startpageno)
+            {
+                <li class="page-item @active">
+                    <a class="page-link" href="javascript:;" onclick="openData(@idx)">@idx</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item @active">
+                    <a class="page-link" href="javascript:;" onclick="openData(@idx)">@idx</a>
+                </li>
+            }
+        }
+        <li class="page-item">
+            <a class="page-link" href="javascript:;" onclick="openData(@maxpage)">
+                »
+            </a>
+        </li>
+    </ul>
+
+}
+<br/>
+

@@ -1,0 +1,114 @@
+﻿@{
+
+    var header = Session["opnamemaster"] as digibox.services.Models.OpnamListModel;
+    var content = Session["opnamedetail"] as List<digibox.services.Models.OpnameDetail>;
+    ViewBag.Title = $"Edit {header.OpnameTypeValue} - {header.CheckeByName}";
+
+}
+
+
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">@ViewBag.Title</h3>
+                <div class="card-tools"></div>
+            </div>
+            <div class="card-body">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Date</label>
+                    <div class="col-sm-4">
+                        <label class="form-control">@String.Format("{0:dd MMM yyyy}", header.opnamdate)</label>
+                    </div>
+                    <label class="col-sm-2 col-form-label">Operator</label>
+                    <div class="col-sm-4">
+                        <label class="form-control">@header.CheckeByName</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2">Type</label>
+                    <div class="col-sm-10">
+                        <label class="form-control">@header.OpnameTypeValue</label>
+                    </div>
+                </div>
+                <div class="form-group row" id="tblContent">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    RFID Code
+                                </th>
+                                <th>
+                                    Part. No
+                                </th>
+                                <th>
+                                    Material
+                                </th>
+                                <th>
+                                    In/Out
+                                </th>
+                                <th>
+                                    Amount
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var itm in content)
+                            {
+                            <tr>
+                                <td>
+                                    @itm.rfidcode
+                                </td>
+                                <td>
+                                    @itm.partno
+                                </td>
+                                <td>
+                                    @itm.materialName
+                                </td>
+                                <td>
+                                    @itm.inOutName
+                                </td>
+                                <td>
+                                    @String.Format("{0:n0}", itm.amount)
+                                </td>
+                                <td>
+                                    @itm.description
+                                </td>
+                                <td>
+                                    <a href="javasript:;" onclick="remove('@itm.id')">
+                                        <i class="fa fa-trash-alt text-danger"></i>
+                                    </a>
+                                    <a href="~/Opnam/PrintRFID/@itm.id" >
+                                        <i class="fa fa-print text-success"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="button" onclick="save()" class="btn btn-outline-success">
+                    <i class="fa fa-save text-primary"></i> Save
+                </button>
+                <a href="~/Opnam/PrintAll/@header.id" class="btn btn-outline-success">
+                    <i class="fa fa-print text-primary"></i> PrintAll
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/Opnam/Edit.js"></script>
+
+}

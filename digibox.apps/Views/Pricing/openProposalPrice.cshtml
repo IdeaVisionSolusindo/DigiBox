@@ -1,0 +1,114 @@
+﻿@model digibox.services.Models.PriceProposalModel
+@{
+    ViewBag.Title = "Price Proposal";
+    var distributor = ViewData["distributor"] as string;
+    var details = ViewData["details"] as List<digibox.services.Models.MaterialPricingModel>;
+    var attachment = ViewData["attachment"] as string;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">@ViewBag.Title</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div class="form-horizontal">
+                    @Html.HiddenFor(x => x.id)
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.ddate, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-2">
+                            <div class="input-group date" id="ddate" data-target-input="nearest">
+                                <label class="form-control">@String.Format("{0:dd MMM yyyy}", Model.ddate)</label>
+                            </div>
+                        </div>
+                        @Html.LabelFor(x => x.distributorid, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-6">
+                            <label class="form-control">@distributor</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.startdate, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-2">
+                            <div class="input-group date" id="ddate" data-target-input="nearest">
+                                <label class="form-control">@String.Format("{0:dd MMM yyyy}", Model.startdate)</label>
+                            </div>
+                        </div>
+                        @Html.LabelFor(x => x.enddate, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-2">
+                            <div class="input-group date" id="ddate" data-target-input="nearest">
+                                <label class="form-control">@String.Format("{0:dd MMM yyyy}", Model.enddate)</label>
+                            </div>
+                        </div>
+                    </div>
+                    @if (Model.status == digibox.apps.Modules.PriceStatus.POSTEDBYCOLLECTOR)
+                    {
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Attachment</label>
+                            <div class="col-sm-6">
+                                @using (Html.BeginForm("Approve", "Pricing", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data", @id = "frmApproval" }))
+                                {
+                                    @Html.HiddenFor(x => x.id)
+                                    <input type="file" name="file" id="file" />
+                                    <button class="btn btn-sm btn-success" type="submit">Approve</button>
+                                    <a href="javascript:;" class="btn btn-sm btn-danger" onclick="Reject('@Model.id')" title="Reject ">
+                                        <i class="fa fa-times text-white"></i> Reject
+                                    </a>
+
+                                }
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Attachment</label>
+                            <div class="col-sm-6">
+                                <a href="~/Attachment/SaveAttachment/@attachment"> <i class="fa fa-download text-success"></i></a>
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group row">
+                        <table class="table table-striped" id="tblPriceList">
+                            <thead>
+                                <tr>
+                                    <th>Part No</th>
+                                    <th>Material</th>
+                                    <th>Current Price</th>
+                                    <th>New Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var itm in details)
+                                {
+                                    <tr>
+                                        <td>
+                                            @itm.partno
+                                        </td>
+                                        <td>
+                                            @itm.name
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:n0}", itm.currentprice)
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:n0}", itm.proposedprice)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/Pricing/OpenProposalPrice.js"></script>
+
+}

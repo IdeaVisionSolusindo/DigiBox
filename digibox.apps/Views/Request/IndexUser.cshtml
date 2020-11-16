@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Request";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">@ViewBag.Title</h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-md">
+                        <input class="form-control form-control-navbar" id="searchString" type="search" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" onclick="openData(1)">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <a class="btn btn-danger" href="~/Request/Add">
+                                <i class="fa fa-file-o"></i> New
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <div id="tblData" class="table-responsive p-3 border-info ">
+                    @Html.Action("RequestByUser")
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/Request/indexUser.js"></script>
+
+}

@@ -1,0 +1,143 @@
+﻿@model digibox.services.Models.MaterialModel
+@{
+    ViewBag.Title = "Edit " + Model.name;
+
+    var uomlist = ViewData["uomlist"] as List<SelectListItem>;
+    var locationlist = ViewData["locationlist"] as List<SelectListItem>;
+    var binlocationlist = ViewData["binlocationlist"] as List<SelectListItem>;
+    var movementtypelist = ViewData["movementtypelist"] as List<SelectListItem>;
+    var materialtypelist = ViewData["materialtypelist"] as List<SelectListItem>;
+    var distributorlist = ViewData["distributorlist"] as List<SelectListItem>;
+    var sbulist = ViewData["sbulist"] as List<SelectListItem>;
+
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">@ViewBag.Title</h3>
+            </div>
+            <!-- /.card-header -->
+            @using (Html.BeginForm("Edit", "Material", FormMethod.Post, new { @id = "frmEdit", @class = "form-horizontal" }))
+            {
+                @Html.HiddenFor(x => x.id)
+                <div class="card-body">
+                    @Html.AntiForgeryToken()
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.partno, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(x => x.partno, new { @class = "form-control", @placeholder = Html.DisplayNameFor(x => x.partno) })
+                        </div>
+                        @Html.LabelFor(x => x.name, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(x => x.name, new { @class = "form-control", @placeholder = Html.DisplayNameFor(x => x.name) })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.description, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
+                            @Html.TextAreaFor(x => x.description, new { @class = "form-control", @placeholder = Html.DisplayNameFor(x => x.description) })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.datecreate, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            <div class="input-group date" id="datecreate" data-target-input="nearest">
+                                @Html.TextBoxFor(x => x.datecreate, "{0: dd MMM yyyy}", new { @class = "form-control datetimepicker-input", @id="dtcc", data_target = "#datecreate" })
+                                <div class="input-group-append" data-target="#datecreate" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.LabelFor(x => x.unit, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(x => x.unit, uomlist, new { @class = "form-control s2", @placeholder = Html.DisplayNameFor(x => x.unit) })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.location, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(x => x.location, locationlist, new { @class = "form-control s2", @placeholder = Html.DisplayNameFor(x => x.location) })
+                        </div>
+                        @Html.LabelFor(x => x.binlocation, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(x => x.binlocation, binlocationlist, new { @class = "form-control s2", @placeholder = Html.DisplayNameFor(x => x.binlocation) })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.minstock, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(x => x.minstock, new { @class = "form-control", @placeholder = Html.DisplayNameFor(x => x.minstock) })
+                        </div>
+                        @Html.LabelFor(x => x.maxstock, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(x => x.maxstock, new { @class = "form-control", @placeholder = Html.DisplayNameFor(x => x.maxstock) })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.calhorizon, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(x => x.calhorizon, new { @class = "form-control", @placeholder = Html.DisplayNameFor(x => x.calhorizon) })
+                        </div>
+                        @Html.LabelFor(x => x.plant, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(x => x.plant, new { @class = "form-control", @placeholder = Html.DisplayNameFor(x => x.plant) })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.movementtype, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(x => x.movementtype, movementtypelist, new { @class = "form-control s2", @placeholder = Html.DisplayNameFor(x => x.movementtype) })
+                        </div>
+                        @Html.LabelFor(x => x.materialtype, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(x => x.materialtype, materialtypelist, new { @class = "form-control s2", @placeholder = Html.DisplayNameFor(x => x.materialtype) })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.sbu, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
+                            @Html.DropDownListFor(x => x.sbu, sbulist, new { @class = "form-control s2", @id = "sbu", multiple = "multiple", @placeholder = Html.DisplayNameFor(x => x.distributor) })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.sloc, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(x => x.sloc, new { @class = "form-control", @placeholder = Html.DisplayNameFor(x => x.sloc) })
+                        </div>
+                        @Html.LabelFor(x => x.distributor, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(x => x.distributor, distributorlist, new { @class = "form-control s2", @placeholder = Html.DisplayNameFor(x => x.distributor) })
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary"> Save </button>
+                </div>
+            }
+            <!-- /.card-body -->
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Material/Edit.js"></script>
+    <script>
+        function getSBU(idx) {
+            var link = "/Material/GetSBU";
+            $.get(link, { id: idx }, function (res) {
+                $('#sbu').val(res);
+                $('.s2').select2({
+                    theme: 'bootstrap4'
+                })
+            })
+        }
+
+        $(function () {
+            getSBU('@Model.id')
+        })
+    </script>
+
+
+}

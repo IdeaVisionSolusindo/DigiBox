@@ -1,0 +1,56 @@
+﻿@model List<digibox.services.Models.PriceListModel>
+
+<table class="table nowrapcell">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Active</th>
+            <th class="text-right">
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var itm in Model)
+        {
+            <tr>
+                <td>@String.Format("{0: dd/MM/yyyy}", itm.datestart)</td>
+                <td>@String.Format("{0:n0}", itm.price)</td>
+                <td>
+                    <label class="@digibox.apps.Modules.FNGlobal.LabelColor(itm.status)">
+                        @itm.status
+                    </label>
+                </td>
+                <td>
+                    @if (itm.isactive ?? true)
+                    {
+                        <label class="@digibox.apps.Modules.FNGlobal.LabelColor(@digibox.apps.Modules.ActiveInActiveStatus.ACTIVE)">
+                            @digibox.apps.Modules.ActiveInActiveStatus.ACTIVE
+                        </label>
+                    }
+                    else
+                    {
+                        <label class="@digibox.apps.Modules.FNGlobal.LabelColor(@digibox.apps.Modules.ActiveInActiveStatus.INACTIVE)">
+                            @digibox.apps.Modules.ActiveInActiveStatus.INACTIVE
+                        </label>
+                    }
+                </td>
+                <td style="white-space: nowrap;" class="text-center">
+                    @if (itm.status == digibox.apps.Modules.PriceStatus.POSTEDBYADMIN)
+                    {
+                        <a href="javascript:;" onclick="Reject('@itm.id')" title="Reject">
+                            <i class="fa fa-times fa-sm text-danger"></i>
+                        </a>
+                        <a href="javascript:;" onclick="Approve('@itm.id')" title="Approve">
+                            <i class="fa fa-check fa-sm text-success"></i>
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

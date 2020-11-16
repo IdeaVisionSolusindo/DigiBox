@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="InTheHand.Net.Personal">
+      <HintPath>..\..\Resouces\Assemblies\InTheHand.Net.Personal.dll</HintPath>
+    </Reference>
+    <Reference Include="RFIDCommandLib">
+      <HintPath>..\..\Resouces\Assemblies\RFIDCommandLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Symbol.Extensions.CompactFramework">
+      <HintPath>..\..\Resouces\Assemblies\Symbol.Extensions.CompactFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Symbol.Extensions.Compatibility">
+      <HintPath>..\..\Resouces\Assemblies\Symbol.Extensions.Compatibility.dll</HintPath>
+    </Reference>
+    <Reference Include="Symbol.RFID.SDK">
+      <HintPath>..\..\Resouces\Assemblies\Symbol.RFID.SDK.dll</HintPath>
+    </Reference>
+    <Reference Include="Symbol.RFID.SDK.Connectivity.Windows">
+      <HintPath>..\..\Resouces\Assemblies\Symbol.RFID.SDK.Connectivity.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Symbol.RFID.SDK.Discovery.Windows">
+      <HintPath>..\..\Resouces\Assemblies\Symbol.RFID.SDK.Discovery.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Symbol.RFID.SDK.Domain.Reader">
+      <HintPath>..\..\Resouces\Assemblies\Symbol.RFID.SDK.Domain.Reader.dll</HintPath>
+    </Reference>
+    <Reference Include="Symbol.RFID.SDK.Domain.Reader.Infrastructure">
+      <HintPath>..\..\Resouces\Assemblies\Symbol.RFID.SDK.Domain.Reader.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Symbol.RFID.SDK.Domain.Reader.Infrastructure.Management">
+      <HintPath>..\..\Resouces\Assemblies\Symbol.RFID.SDK.Domain.Reader.Infrastructure.Management.dll</HintPath>
+    </Reference>
+    <Reference Include="Symbol.RFID.SDK.Logger">
+      <HintPath>..\..\Resouces\Assemblies\Symbol.RFID.SDK.Logger.dll</HintPath>
+    </Reference>
+    <Reference Include="UHFReader18CSharp">
+      <HintPath>..\..\Resouces\Assemblies\UHFReader18CSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

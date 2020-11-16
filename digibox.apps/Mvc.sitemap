@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+
+  <mvcSiteMapNode title="Dashboard" controller="Home" action="Index">
+    <mvcSiteMapNode title="User" controller="User" action="Index"/>
+    <mvcSiteMapNode title="User" controller="User" action="Assignment"/>
+    <mvcSiteMapNode title="User" controller="User" action="Role"/>
+    <mvcSiteMapNode title="Pricing" controller="Price" action="Index">
+      <mvcSiteMapNode title="Price Change" controller="Price" action="PriceProposalChanges"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Material" controller="Material" action="Index"/>
+    <mvcSiteMapNode title="Distributor" controller="Distributor" action="Index"/>
+    <mvcSiteMapNode title="UOM" controller="Attribute" action="UOM"/>
+    <mvcSiteMapNode title="Movement Type" controller="Attribute" action="MovementType"/>
+    <mvcSiteMapNode title="Material Type" controller="Attribute" action="MaterialType"/>
+    <mvcSiteMapNode title="SBU" controller="Attribute" action="SBU"/>
+  </mvcSiteMapNode>
+
+</mvcSiteMap>

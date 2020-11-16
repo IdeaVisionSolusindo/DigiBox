@@ -1,0 +1,69 @@
+﻿@model List<digibox.services.Models.MaterialListModel>
+@{ 
+    int idx = 0;
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">Minimum Material List</h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-md">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p0">
+                <table class="table nowrapcell">
+                    <thead>
+                        <tr>
+                            <th>Part No.</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Min. Stock</th>
+                            <th>Max. Stock</th>
+                            <th>Current Stock</th>
+                            <th>UoM</th>
+                            <th>Distributor</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var itm in Model)
+                        {
+                            idx = idx + 1;
+                            if (idx <= 10)
+                            {
+                                <tr>
+                                    <td>@itm.partno</td>
+                                    <td>@itm.name</td>
+                                    <td>@itm.description</td>
+                                    <td>@itm.minstock</td>
+                                    <td>@itm.maxstock</td>
+                                    <td>@itm.currentstock</td>
+                                    <td>@itm.unit</td>
+                                    <td style="white-space: nowrap;">@itm.distributor</td>
+                                </tr>
+                                continue;
+                            }
+                            break;
+                        }
+                        @while (idx < 10)
+                        {
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td style="white-space: nowrap;">&nbsp;</td>
+                            </tr>
+                            idx = idx + 1;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

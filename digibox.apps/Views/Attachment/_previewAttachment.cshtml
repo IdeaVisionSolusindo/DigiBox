@@ -1,0 +1,23 @@
+﻿@model digibox.services.Models.AttachmentModel
+@{
+    string atttype = $"data:{Model.attachmenttype};base64";
+}
+
+<div class="modal inmodal" id="dgModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h5 class="modal-title">@Model.description</h5>
+            </div>
+            <div class="modal-body">
+                <center>
+                    <img src="@String.Format("{0},{1}",atttype, Convert.ToBase64String(Model.attachment))" style="height:300px;position:center" />
+                </center>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

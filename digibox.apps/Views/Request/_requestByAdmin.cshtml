@@ -1,0 +1,79 @@
+﻿@model List<digibox.services.Models.RequestListModel>
+@{
+    int maxpage = Convert.ToInt32(ViewData["maxpage"]);
+    int currentpage = Convert.ToInt32(ViewData["currentpage"]);
+    int startpageno = currentpage > 4 ? currentpage - 4 : 1;
+    int endpageno = maxpage > 4 ? startpageno + 4 : maxpage;
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Received From</th>
+            <th>Received Date</th>
+            <th>Status</th>
+            <th class="text-center">action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var itm in Model)
+        {
+            <tr>
+                <td>@String.Format("{0:dd MMM yyyy}", itm.requestdate)</td>
+                <td>@itm.RequestedByName</td>
+                <td>@String.Format("{0:dd MMM yyyy}", itm.receiveddate)</td>
+                <td>@itm.status</td>
+                <td class="text-center">
+                    @if (itm.status == digibox.apps.Modules.RequestStatus.POSTEDBYUSER)
+                    {
+                        <a href="~/Request/Approve/@itm.id" title="Approve Request">
+                            <i class="fa fa-file-code fa-sm text-warning"></i>
+                        </a>
+                    }
+                    <a href="~/Request/Open/@itm.id" title="Open">
+                        <i class="fa fa-file fa-sm text-info"></i>
+                    </a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (startpageno < endpageno)
+{
+
+    <input type="hidden" value="@startpageno" />
+    <ul class="pagination pagination-sm float-left m-2">
+        <li class="page-item">
+            <a class="page-link" href="javascript:;" onclick="openData(1)">
+                «
+            </a>
+        </li>
+        @for (int idx = startpageno; idx <= endpageno; idx++)
+        {
+            string active = idx == currentpage ? "active" : "";
+            if (idx == startpageno)
+            {
+                <li class="page-item @active">
+                    <a class="page-link" href="javascript:;" onclick="openData(@idx)">@idx</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item @active">
+                    <a class="page-link" href="javascript:;" onclick="openData(@idx)">@idx</a>
+                </li>
+            }
+        }
+        <li class="page-item">
+            <a class="page-link" href="javascript:;" onclick="openData(@maxpage)">
+                »
+            </a>
+        </li>
+    </ul>
+
+}
+
+

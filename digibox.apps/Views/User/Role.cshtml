@@ -1,0 +1,54 @@
+﻿@model List<digibox.services.Models.RoleModel>
+@{
+    ViewBag.Title = "Role";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">@ViewBag.Title</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <div id="tblData" class="table-responsive p-3 border-info ">
+                    <table class="table table-striped ">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    Action
+                                </th>
+                                <th class="text-center">
+                                    Name
+                                </th>
+                                <th class="text-center">
+                                    Description
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var itm in Model)
+                            {
+                            <tr>
+                                <td align="center">
+                                    <a href="~/User/RoleDetail/@itm.id">
+                                        <i class="fa fa-file"></i>
+                                    </a>
+                                </td>
+                                <td align="center">@itm.name</td>
+                                <td align="center">@itm.description</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/User/index.js"></script>
+}

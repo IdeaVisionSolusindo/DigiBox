@@ -1,0 +1,71 @@
+﻿@model digibox.services.Models.RoleModel 
+@{
+    ViewBag.Title = Model.description;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">@ViewBag.Title</h3>
+                <div class="card-tools" style="width:50%">
+                    <div class="input-group input-group-md">
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <div id="tblData" class="table-responsive p-3 border-info ">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th width="100px" class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" name="inlist" id="checkAll" onclick="CheckAll()" />
+                                    <label for="checkAll"></label>
+                                </th>
+                                <th>Name
+                                <input type="hidden" value="@Model.id" id="role" />
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var itm in Model.detail)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="icheck-primary d-inline ml-2">
+                                            @if (itm.isinList)
+                                            {
+                                                <input type="checkbox" checked class="chkchild" value="@itm.functionid" name="inlist" id="isin_@itm.functionid" />
+                                                <label for="isin_@itm.functionid"></label>
+                                            }
+                                            else
+                                            {
+                                                <input type="checkbox" class="chkchild"  value="@itm.functionid" id="isin_@itm.functionid" />
+                                                <label for="isin_@itm.functionid"></label>
+                                            }
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @itm.Name
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-success" onclick="saveMultiple()">
+                    <i class="fa fa-save"></i> Save
+                </button>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/User/RoleDetail.js"></script>
+}

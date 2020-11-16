@@ -1,0 +1,36 @@
+﻿
+
+@model digibox.services.Models.AttributeModel
+@{ 
+    var id = ViewData["id"] as string;
+}
+<div class="modal fade" id="dgModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Reject Price</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("Reject", "Pricing", FormMethod.Post, new { @id = "frmReject", @class = "form-horizontal" }))
+            {
+                <input type="hidden" id="idx" value="@id" name="id" />
+                <div class="modal-body form-horizontal">
+                    <div class="form-group row">
+                        <label class = "col-sm-4 col-form-label">Reason for Rejection</label>
+                        <div class="col-sm-8">
+                            <textarea name="reason" class = "form-control" cols="2" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Reject</button>
+                </div>
+            }
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

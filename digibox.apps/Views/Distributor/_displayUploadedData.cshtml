@@ -1,0 +1,28 @@
+﻿
+@using (Html.BeginForm("SaveMultiple", "Distributor", FormMethod.Post, new { @id="frmsaveMultiple"}))
+{
+    <div class="table-responsive p-3 border-info ">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Distributor</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var itm in Model)
+                {
+                    <tr>
+                        <td>@itm.name</td>
+                        <td>@itm.address</td>
+                        <td>@itm.telp</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="form-group row">
+        <button type="submit" class="btn btn-primary btn-sm">Save</button>
+    </div>
+}

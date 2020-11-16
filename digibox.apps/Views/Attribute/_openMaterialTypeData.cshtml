@@ -1,0 +1,75 @@
+﻿<!--DISTRIBUTOR DETAIL      -->
+
+@model PagedList.IPagedList<digibox.services.Models.AttributeModel>
+@using PagedList.Mvc;
+@{
+    int maxpage = Convert.ToInt32(ViewData["maxpage"]);
+    int currentpage = Convert.ToInt32(ViewData["currentpage"]);
+    int startpageno = currentpage > 4 ? currentpage - 4 : 1;
+    int endpageno = maxpage > 4 ? startpageno + 4 : maxpage;
+    string attrname = "MATERIAL-TYPE";
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="text-center">Action</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var itm in Model)
+        {
+        <tr>
+            <td class="text-center">
+                <a href="javascript:;" onclick="edit('@itm.id','@attrname')" title="Edit @itm.attributevalue">
+                    <i class="fa fa-edit text-success"></i>
+                </a>
+                <a href="javascript:;" onclick="remove('@itm.id','@itm.attributevalue','@attrname')" title="Delete @itm.attributevalue">
+                    <i class="fa fa-times text-danger"></i>
+                </a>
+            </td>
+            <td>@itm.attributevalue</td>
+            <td>@itm.description</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@if (startpageno < endpageno)
+{
+
+    <input type="hidden" value="@startpageno" />
+    <ul class="pagination pagination-sm float-left m-2">
+        <li class="page-item">
+            <a class="page-link" href="javascript:;" onclick="openMaterialTypeData(1)">
+                «
+            </a>
+        </li>
+        @for (int idx = startpageno; idx <= endpageno; idx++)
+        {
+            string active = idx == currentpage ? "active" : "";
+            if (idx == startpageno)
+            {
+                <li class="page-item @active">
+                    <a class="page-link" href="javascript:;" onclick="openMaterialTypeData(@idx)">@idx</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item @active">
+                    <a class="page-link" href="javascript:;" onclick="openMaterialTypeData(@idx)">@idx</a>
+                </li>
+            }
+        }
+        <li class="page-item">
+            <a class="page-link" href="javascript:;" onclick="openMaterialTypeData(@maxpage)">
+                »
+            </a>
+        </li>
+    </ul>
+
+}
+
+

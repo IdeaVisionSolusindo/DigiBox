@@ -1,0 +1,74 @@
+﻿@model List<digibox.services.Models.MaterialListModel>
+@using PagedList.Mvc;
+@{
+    int maxpage = Convert.ToInt32(ViewData["maxpage"]);
+    int currentpage = Convert.ToInt32(ViewData["currentpage"]);
+    int startpageno = currentpage > 4 ? currentpage - 4 : 1;
+    int endpageno = maxpage > 4 ? startpageno + 4 : maxpage;
+    string dangerclass = "";
+}
+
+<table class="table nowrapcell">
+    <thead>
+        <tr>
+            <th class="text-center">Action</th>
+            <th>Part No.</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Min. Stock</th>
+            <th>Max. Stock</th>
+            <th>Current Stock</th>
+            <th>Unit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var itm in Model)
+        {
+            if (itm.currentstock <= itm.minstock)
+            {
+                dangerclass = "bg-gradient-red";
+            }
+            else
+            {
+                dangerclass = "";
+            }
+
+        <tr class="@dangerclass">
+            <td class="text-center">
+                <a href="~/Inventory/History/@itm.id">
+                    <i class="fa fa-file text-success "></i>
+                </a>
+            </td>
+            <td>@itm.partno</td>
+            <td>@itm.name</td>
+            <td>@itm.description</td>
+            <td>@String.Format("{0:n0}", itm.minstock)</td>
+            <td>@String.Format("{0:n0}", itm.maxstock)</td>
+            <td>@String.Format("{0:n0}", itm.currentstock)</td>
+            <td>@itm.unit</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@if (startpageno < endpageno)
+{
+    <div class="btn-group">
+        <input type="hidden" value="@startpageno" />
+        <button type="button" class="btn btn-white" onclick="openData(@currentpage-1)"><i class="fa fa-chevron-left"></i></button>
+        @for (int idx = startpageno; idx <= endpageno; idx++)
+        {
+            string active = idx == currentpage ? "active" : "";
+            if (idx == startpageno)
+            {
+                <button class="btn btn-white @active" onclick="openData(@idx)">@idx</button>
+            }
+            else
+            {
+                <button class="btn btn-white @active" onclick="openData(@idx)">@idx</button>
+            }
+        }
+        <button type="button" class="btn btn-white" onclick="openData(@currentpage+1)"><i class="fa fa-chevron-right"></i> </button>
+    </div>
+}
+

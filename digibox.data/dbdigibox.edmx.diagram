@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bb720d8fd17f4b028fdfb811f2367279" Name="Diagram1" ZoomLevel="88">
+        <EntityTypeShape EntityType="dbdigiboxModel.tmdistributor" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.tmattribute" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.tmmaterialsbu" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.tmmaterial" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.tmrole" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.tmuser" Width="1.5" PointX="5.375" PointY="5.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.tmmaterialuser" Width="1.5" PointX="7.375" PointY="5.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.ttmessage" Width="1.5" PointX="9.375" PointY="5.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.tmmaterialprice" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.ttattachment" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.tdprice" Width="1.5" PointX="9.375" PointY="10.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.ttprice" Width="1.5" PointX="3.375" PointY="11.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.tduser" Width="1.5" PointX="11.375" PointY="5.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.tdrole" Width="1.5" PointX="11.75" PointY="10.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.tsfunction" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.ttreplenish" Width="1.5" PointX="5.375" PointY="11.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.tdreplenish" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.tdrequest" Width="1.5" PointX="14.375" PointY="10.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.ttrequest" Width="1.5" PointX="11.375" PointY="14.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.ttinventory" Width="1.5" PointX="15.375" PointY="0.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.tdoutgoing" Width="1.5" PointX="13.375" PointY="5.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.tddraw" Width="1.5" PointX="15.375" PointY="5.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.ttdraw" Width="1.5" PointX="7.375" PointY="15.75" />
+        <EntityTypeShape EntityType="dbdigiboxModel.tdopnam" Width="1.5" PointX="13.375" PointY="15.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

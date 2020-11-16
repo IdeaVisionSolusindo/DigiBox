@@ -1,0 +1,73 @@
+﻿@model digibox.services.Models.RequestModel
+@{
+    ViewBag.Title = "Open";
+    var user = ViewData["user"] as string;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">@ViewBag.Title</h3>
+            </div>
+            <!-- /.card-header -->
+            @using (Html.BeginForm("Receive", "Request", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+
+                <div class="card-body">
+                    @Html.HiddenFor(x => x.id)
+                    @Html.HiddenFor(x => x.requestdate)
+                    @Html.HiddenFor(x => x.no)
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.requestdate, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            <label class="form-control">@String.Format("{0: dd MMM yyyy}", Model.requestdate)</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-2">Requested By</label>
+                        <div class="col-sm-10">
+                            <label class="form-control">@user</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <table class="table" id="tblDetail">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Part. No
+                                    </th>
+                                    <th>
+                                        Material
+                                    </th>
+                                    <th>
+                                        Amount
+                                    </th>
+                                    <th>
+                                        Received
+                                    </th>
+                                    <th>
+                                        Different
+                                    </th>
+                                    <th>
+                                        Unit
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary"> Receive </button>
+                </div>
+            }
+            <!-- /.card-body -->
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/Request/Receive.js"></script>
+
+}

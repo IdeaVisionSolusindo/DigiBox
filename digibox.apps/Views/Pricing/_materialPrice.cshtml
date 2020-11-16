@@ -1,0 +1,69 @@
+﻿@model List<digibox.services.Models.MaterialPriceListModel>
+@{ 
+    string currentpriceclass = "";
+}
+<table class="table nowrapcell">
+    <thead>
+        <tr>
+            <th>Date Start</th>
+            <th>Date End</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Active</th>
+            <th class="text-right">
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var itm in Model)
+        {
+            if (itm.isactive==true)
+            {
+                currentpriceclass = "bg-gradient-navy";
+            }
+            else
+            {
+                currentpriceclass = "";
+            }
+        <tr class=@currentpriceclass>
+            <td>@String.Format("{0: dd/MM/yyyy}", itm.datestart)</td>
+            <td>@String.Format("{0: dd/MM/yyyy}", itm.dateend)</td>
+            <td>@String.Format("{0:n0}", itm.price)</td>
+            <td>
+                <label class="@digibox.apps.Modules.FNGlobal.LabelColor(itm.status)">
+                    @itm.status
+                </label>
+            </td>
+            <td>
+                @if (itm.isactive ?? true)
+                {
+                    <label class="@digibox.apps.Modules.FNGlobal.LabelColor(@digibox.apps.Modules.ActiveInActiveStatus.ACTIVE)">
+                        @digibox.apps.Modules.ActiveInActiveStatus.ACTIVE
+                    </label>
+                }
+                else
+                {
+                    <label class="@digibox.apps.Modules.FNGlobal.LabelColor(@digibox.apps.Modules.ActiveInActiveStatus.INACTIVE)">
+                        @digibox.apps.Modules.ActiveInActiveStatus.INACTIVE
+                    </label>
+                }
+            </td>
+            <td style="white-space: nowrap;" class="text-center">
+                @if (itm.status == digibox.apps.Modules.PriceStatus.DRAFT && itm.ismyproposal)
+                {
+                    <a href="javascript:;" title="Edit" onclick="edit('@itm.id')">
+                        <i class="fa fa-edit fa-sm text-success"></i>
+                    </a>
+                    <a href="javascript:;" onclick="remove('@itm.id')" title="Delete">
+                        <i class="fa fa-times fa-sm text-danger"></i>
+                    </a>
+                    <a href="javascript:;" onclick="Propose('@itm.id')" title="Propose to Admin">
+                        <i class="fa fa-check fa-sm text-warning"></i>
+                    </a>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

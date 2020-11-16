@@ -1,0 +1,58 @@
+﻿@model List<digibox.services.Models.RequestDetailListModel>
+
+<table class="table" id="tblDetail">
+    <thead>
+        <tr>
+            <th>
+                Part. No
+            </th>
+            <th>
+                Material
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Unit
+            </th>
+            <th>
+                RFID No
+            </th>
+            <th>
+                Received
+            </th>
+            <th>
+                Different
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var itm in Model)
+        {
+        <tr id="tr_@itm.id">
+            <td>@itm.partno</td>
+            <td>@itm.name</td>
+            <td>
+                <input type="hidden" id="amt_@itm.id" value="@itm.amount" />
+                @itm.amount
+            </td>
+            <td>@itm.unit</td>
+            <td></td>
+            <td>
+                <input type="hidden" id="rcv_@itm.id" />
+                <label id="lblrcp_@itm.id">0</label></td>
+            <td><input type="hidden"  />
+                <label class="text-red text-bold" id="dff_@itm.id">@itm.amount</label>
+            </td>
+            <td>
+                <a href="javascript:;" onclick="add('@itm.id','@itm.materialid')">
+                    <i class="fa fa-plus fa-sm text-blue"></i>
+                </a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

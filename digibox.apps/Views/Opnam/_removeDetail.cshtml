@@ -1,0 +1,46 @@
+﻿@{ 
+    var content = Session["opnamedetail"] as List<digibox.services.Models.OpnameDetail>;
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Part. No
+            </th>
+            <th>
+                Material
+            </th>
+            <th>
+                In/Out
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var itm in content)
+        {
+            <tr>
+                <td>
+                    @itm.partno
+                </td>
+                <td>
+                    @itm.materialName
+                </td>
+                <td>
+                    @itm.inOutName
+                </td>
+                <td>
+                    @String.Format("{0:n0}", itm.amount)
+                </td>
+                <td>
+                    @itm.description
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

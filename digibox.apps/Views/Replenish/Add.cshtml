@@ -1,0 +1,77 @@
+﻿@model digibox.services.Models.ReplenishModel
+@{
+    ViewBag.Title = "Add";
+
+    var distributors = ViewData["distributors"] as List<SelectListItem>;
+
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">@ViewBag.Title</h3>
+            </div>
+            <!-- /.card-header -->
+            @using (Html.BeginForm("Add", "Replenish", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+        <div class="card-body">
+            @Html.AntiForgeryToken()
+            <div class="form-group row">
+                @Html.LabelFor(x => x.indate, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-4">
+                    <div class="input-group date dte" id="indate" data-target-input="nearest">
+                        @Html.TextBoxFor(x => x.indate, new { @class = "form-control datetimepicker-input", @id = "indatex", data_target = "#indate" })
+                        <div class="input-group-append" data-target="#indate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <label class="col-sm-2 col-form-label">Distributor</label>
+                <div class="col-sm-4">
+                    @Html.DropDownList("Distributor", distributors, new { @class = "form-control s2", @id = "distributor" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <a class="btn btn-danger text-white" onclick="add()" > Add Item </a>
+                </div>
+            </div>
+            <div class="form-group row">
+                <table class="table table-bordered" id="tblDeail">
+                    <thead>
+                        <tr>
+                            <th>
+                                Part. No
+                            </th>
+                            <th>
+                                Material
+                            </th>
+                            <th>
+                                Amount
+                            </th>
+                            <th>
+                                Unit
+                            </th>
+                            <th>
+                                
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            }
+            <!-- /.card-body -->
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/Replenish/Add.js"></script>
+
+}
